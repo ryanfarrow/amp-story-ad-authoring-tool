@@ -31,7 +31,7 @@
             <mat-select 
                 class='landingPage' 
                 #landingType 
-                (selectionChange)="updateLandingType(landingType.value)">
+                (selectionChange)="updateLandingType($event.value)">
                 <mat-option *ngFor="let landingTypeValue of landingTypeValues" 
                     [value]="LandingTypeMapping[landingTypeValue]">
                     {{LandingTypeMapping[landingTypeValue]}}
