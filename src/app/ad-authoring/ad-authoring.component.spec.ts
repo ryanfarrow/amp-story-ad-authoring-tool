@@ -7,12 +7,14 @@ import {AppModule} from '../app.module'
 import {MatInputHarness} from '@angular/material/input/testing';
 
 import { AdAuthoringComponent } from './ad-authoring.component';
+import { AdAuthoringService } from './ad-authoring.service';
 
 let loader: HarnessLoader;
 
 describe('AdAuthoringComponent', () => {
   let component: AdAuthoringComponent;
   let fixture: ComponentFixture<AdAuthoringComponent>;
+  let service: AdAuthoringService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -31,7 +33,14 @@ describe('AdAuthoringComponent', () => {
   beforeEach(async () => {
     const expansion = await loader.getHarness(MatExpansionPanelHarness);
     await expansion.expand();
-  })
+  });
+
+  beforeEach(async () => {
+    service = TestBed.inject(AdAuthoringService);
+    spyOn(service,'updateLandingUrl');
+    spyOn(service,'updateCallToAction');
+    spyOn(service,'updateLandingType');
+  });
 
   it('should create ad-authoring component', () => {
     expect(component).toBeTruthy();
@@ -39,7 +48,6 @@ describe('AdAuthoringComponent', () => {
 
   it('should have correct number of mat selects', async () => {
     const selects = await loader.getAllHarnesses(MatSelectHarness);
-    const expansion = await loader.getHarness(MatExpansionPanelHarness);
     expect(selects.length).toEqual(2);
   });
 
@@ -92,5 +100,29 @@ describe('AdAuthoringComponent', () => {
     await landingUrlInput.setValue('google.com');
     const value = await landingUrlInput.getValue();
     expect(value).toBe('google.com');
+  });
+
+  it('changing landing url should call updateLandingUrl function', async () => {
+    const landingUrlInput = await loader.getHarness(MatInputHarness);
+    await landingUrlInput.setValue('google.com');
+    expect(service.updateLandingUrl).toHaveBeenCalled();
+  });
+
+  it('changing landing type option should call updateLandingType function', async () => {   
+    const landingTypeSelect = await loader.getHarness(MatSelectHarness.with({
+      selector: '.landingPage'
+    }));
+    await landingTypeSelect.open();
+    await landingTypeSelect.clickOptions({text:'AMP'});
+    expect(service.updateLandingType).toHaveBeenCalled();
+  });
+
+  it('changing call to action option should call updateCallToAction function', async () => {   
+    const callToActionSelect = await loader.getHarness(MatSelectHarness.with({
+      selector: '.callToAction'
+    }));
+    await callToActionSelect.open();
+    await callToActionSelect.clickOptions({text:'Read Now'});
+    expect(service.updateCallToAction).toHaveBeenCalled();
   });
 });
