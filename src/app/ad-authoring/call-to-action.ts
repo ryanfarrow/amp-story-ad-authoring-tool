@@ -46,9 +46,13 @@ export const CallToActionMapping: Record<CallToActionEnum, string> = {
     [CallToActionEnum.WATCH_EPISODE]: 'Watch Episode'
 } as const;
 
-function callToActionComparator (cta1: CallToActionEnum, cta2: CallToActionEnum) {
-    if (cta1 < cta2) return -1;
-    if (cta1 > cta2) return 1;
+function callToActionComparator(cta1: CallToActionEnum, cta2: CallToActionEnum) {
+    if (cta1 < cta2) {
+        return -1;
+    }
+    if (cta1 > cta2) {
+        return 1;
+    }
     return 0;
 }
 

@@ -1,7 +1,7 @@
 export enum LandingTypeEnum {
-    STORY = "STORY",
-    AMP = "AMP",
-    NONAMP = "NONAMP"
+    STORY = 'STORY',
+    AMP = 'AMP',
+    NONAMP = 'NONAMP'
 }
 
 export const LandingTypeMapping: Record<LandingTypeEnum, string> = {
@@ -10,9 +10,13 @@ export const LandingTypeMapping: Record<LandingTypeEnum, string> = {
     [LandingTypeEnum.NONAMP]: 'Non-AMP'
 } as const;
 
-function landingTypeComparator (landingType1: LandingTypeEnum, landingType2: LandingTypeEnum) {
-    if (landingType1 < landingType2) return -1;
-    if (landingType1 > landingType2) return 1;
+function landingTypeComparator(landingType1: LandingTypeEnum, landingType2: LandingTypeEnum) {
+    if (landingType1 < landingType2) {
+        return -1;
+    }
+    if (landingType1 > landingType2) {
+        return 1;
+    }
     return 0;
 }
 

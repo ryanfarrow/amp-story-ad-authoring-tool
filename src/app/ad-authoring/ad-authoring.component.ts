@@ -15,7 +15,7 @@ export class AdAuthoringComponent {
 
   adAuthoringObs: Observable<AdAuthoringWorkflowState>;
 
-  landingPageUrl = "";
+  landingPageUrl = '';
 
   public CallToActionMapping = CallToActionMapping;
   public callToActionValues = sortedCallToAction;
@@ -36,7 +36,7 @@ export class AdAuthoringComponent {
   }
 
   updateCallToAction(callToAction: CallToActionEnum) {
-    console.log("Updating call to action")
+    console.log('Updating call to action');
     this.service.updateCallToAction(callToAction);
   }
 }

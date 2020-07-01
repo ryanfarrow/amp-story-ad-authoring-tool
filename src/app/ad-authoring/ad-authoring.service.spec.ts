@@ -12,7 +12,7 @@ describe('AdAuthoringService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(AdAuthoringService);
-    state = TestBed.inject(AdAuthoringWorkflowStateContainer)
+    state = TestBed.inject(AdAuthoringWorkflowStateContainer);
   });
 
   it('should be created', () => {
