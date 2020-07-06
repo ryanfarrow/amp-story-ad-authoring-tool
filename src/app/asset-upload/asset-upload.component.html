@@ -5,6 +5,15 @@
                 Asset Upload
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Upload image</p>
+        <button mat-raised-button 
+            color="primary" 
+            type="button" 
+            (click)="fileInput.click()">
+            <span>Upload</span>
+            <input #fileInput 
+                type="file" 
+                (change)="onFileInput($event)" 
+                style="display:none;" />
+        </button>
     </mat-expansion-panel>
 </div>
