@@ -13,7 +13,7 @@ import { LandingTypeEnum, LandingTypeMapping,  sortedLandingType } from './landi
 })
 export class AdAuthoringComponent {
 
-  adAuthoringObs: Observable<AdAuthoringWorkflowState>;
+  // adAuthoringObs: Observable<AdAuthoringWorkflowState>;
 
   landingPageUrl = '';
 
@@ -24,7 +24,7 @@ export class AdAuthoringComponent {
   public landingTypeValues = sortedLandingType;
 
   constructor(private service: AdAuthoringService) {
-    this.adAuthoringObs = service.getAdAuthorings().pipe(tap(state => console.log(state)));
+    // this.adAuthoringObs = service.getAdAuthorings().pipe(tap(state => console.log(state)));
   }
 
   updateLandingUrl(landingUrl: string) {

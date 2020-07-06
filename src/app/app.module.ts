@@ -31,9 +31,10 @@ import { AdAuthoringService } from './ad-authoring/ad-authoring.service';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AssetUploadComponent } from './asset-upload/asset-upload.component';
+import { PreviewComponent } from './preview/preview.component';
 
 @NgModule({
-  declarations: [AppComponent, AdAuthoringComponent, TopBarComponent, AssetUploadComponent],
+  declarations: [AppComponent, AdAuthoringComponent, TopBarComponent, AssetUploadComponent, PreviewComponent],
   imports: [BrowserModule, FormsModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule, MatSelectModule, CommonModule, MatExpansionModule, MatButtonModule],
   exports: [MatInputModule, MatFormFieldModule, MatSelectModule],
   providers: [AdAuthoringService],
