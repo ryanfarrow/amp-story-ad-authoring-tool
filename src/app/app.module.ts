@@ -38,5 +38,4 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [AdAuthoringService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
