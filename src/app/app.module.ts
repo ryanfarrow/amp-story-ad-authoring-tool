@@ -17,25 +17,35 @@
 
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 
 import {AppComponent} from './app.component';
-import { AdAuthoringComponent } from './ad-authoring/ad-authoring.component';
-import { AdAuthoringService } from './ad-authoring/ad-authoring.service';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AdAuthoringComponent} from './ad-authoring/ad-authoring.component';
+import {AdAuthoringService} from './ad-authoring/ad-authoring.service';
+import {TopBarComponent} from './top-bar/top-bar.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, AdAuthoringComponent, TopBarComponent],
-  imports: [BrowserModule, FormsModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule, MatSelectModule, CommonModule, MatExpansionModule, MatButtonModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    CommonModule,
+    MatExpansionModule,
+    MatButtonModule,
+  ],
   exports: [MatInputModule, MatFormFieldModule, MatSelectModule],
   providers: [AdAuthoringService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

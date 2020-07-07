@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HarnessLoader} from '@angular/cdk/testing';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
 import {MatSelectHarness} from '@angular/material/select/testing';
 import {MatExpansionPanelHarness} from '@angular/material/expansion/testing';
 import {AppModule} from '../app.module';
 import {MatInputHarness} from '@angular/material/input/testing';
 
-import { AdAuthoringComponent } from './ad-authoring.component';
-import { AdAuthoringService } from './ad-authoring.service';
+import {AdAuthoringComponent} from './ad-authoring.component';
+import {AdAuthoringService} from './ad-authoring.service';
 
 let loader: HarnessLoader;
 
@@ -18,9 +18,8 @@ describe('AdAuthoringComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppModule]
-    })
-    .compileComponents();
+      imports: [AppModule],
+    }).compileComponents();
   });
 
   beforeEach(async () => {
@@ -52,18 +51,22 @@ describe('AdAuthoringComponent', () => {
   });
 
   it('should have the correct number of options for landing type select', async () => {
-    const landingTypeSelect = await loader.getHarness(MatSelectHarness.with({
-      selector: '.landingPage'
-    }));
+    const landingTypeSelect = await loader.getHarness(
+      MatSelectHarness.with({
+        selector: '.landingPage',
+      })
+    );
     await landingTypeSelect.open();
     const typeOptions = await landingTypeSelect.getOptions();
     expect(typeOptions.length).toBe(3);
   });
 
   it('should click the AMP option', async () => {
-    const landingTypeSelect = await loader.getHarness(MatSelectHarness.with({
-      selector: '.landingPage'
-    }));
+    const landingTypeSelect = await loader.getHarness(
+      MatSelectHarness.with({
+        selector: '.landingPage',
+      })
+    );
     await landingTypeSelect.open();
     await landingTypeSelect.clickOptions({text: 'AMP'});
     const selectedText = await landingTypeSelect.getValueText();
@@ -71,18 +74,22 @@ describe('AdAuthoringComponent', () => {
   });
 
   it('should have the correct number of options for call to action select', async () => {
-    const callToActionSelect = await loader.getHarness(MatSelectHarness.with({
-      selector: '.callToAction'
-    }));
+    const callToActionSelect = await loader.getHarness(
+      MatSelectHarness.with({
+        selector: '.callToAction',
+      })
+    );
     await callToActionSelect.open();
     const typeOptions = await callToActionSelect.getOptions();
     expect(typeOptions.length).toBe(21);
   });
 
   it('should click the Read Now option', async () => {
-    const callToActionSelect = await loader.getHarness(MatSelectHarness.with({
-      selector: '.callToAction'
-    }));
+    const callToActionSelect = await loader.getHarness(
+      MatSelectHarness.with({
+        selector: '.callToAction',
+      })
+    );
     await callToActionSelect.open();
     await callToActionSelect.clickOptions({text: 'Read Now'});
     const selectedText = await callToActionSelect.getValueText();
@@ -109,18 +116,22 @@ describe('AdAuthoringComponent', () => {
   });
 
   it('changing landing type option should call updateLandingType function', async () => {
-    const landingTypeSelect = await loader.getHarness(MatSelectHarness.with({
-      selector: '.landingPage'
-    }));
+    const landingTypeSelect = await loader.getHarness(
+      MatSelectHarness.with({
+        selector: '.landingPage',
+      })
+    );
     await landingTypeSelect.open();
     await landingTypeSelect.clickOptions({text: 'AMP'});
     expect(service.updateLandingType).toHaveBeenCalled();
   });
 
   it('changing call to action option should call updateCallToAction function', async () => {
-    const callToActionSelect = await loader.getHarness(MatSelectHarness.with({
-      selector: '.callToAction'
-    }));
+    const callToActionSelect = await loader.getHarness(
+      MatSelectHarness.with({
+        selector: '.callToAction',
+      })
+    );
     await callToActionSelect.open();
     await callToActionSelect.clickOptions({text: 'Read Now'});
     expect(service.updateCallToAction).toHaveBeenCalled();
