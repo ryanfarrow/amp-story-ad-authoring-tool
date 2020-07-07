@@ -9,4 +9,8 @@ export class AssetUploadComponent {
 
   constructor() { }
 
+  onFileInput(fileInput: any) {
+    debugger;
+  }
+
 }
