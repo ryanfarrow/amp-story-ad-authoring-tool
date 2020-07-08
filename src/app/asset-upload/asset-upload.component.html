@@ -13,7 +13,11 @@
             <input #fileInput 
                 type="file" 
                 (change)="onFileInput($event)" 
-                style="display:none;" />
+                style="display:none;" 
+                name="filename"/>
         </button>
     </mat-expansion-panel>
+    <!-- <div *ngIf="(adAuthoringObs | async) as adAuthoring">
+        <img [src]="cardImageBase64" alt="image">
+    </div> -->
 </div>
