@@ -8,6 +8,8 @@ import {MatInputHarness} from '@angular/material/input/testing';
 
 import {AdAuthoringComponent} from './ad-authoring.component';
 import {AdAuthoringService} from './ad-authoring.service';
+import {LandingTypeEnum} from './landing-type-values';
+import {CallToActionEnum} from './call-to-action';
 
 let loader: HarnessLoader;
 
@@ -20,21 +22,12 @@ describe('AdAuthoringComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AppModule],
     }).compileComponents();
-  });
-
-  beforeEach(async () => {
     fixture = TestBed.createComponent(AdAuthoringComponent);
     loader = TestbedHarnessEnvironment.loader(fixture);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  beforeEach(async () => {
     const expansion = await loader.getHarness(MatExpansionPanelHarness);
     await expansion.expand();
-  });
-
-  beforeEach(async () => {
     service = TestBed.inject(AdAuthoringService);
     spyOn(service, 'updateLandingUrl');
     spyOn(service, 'updateCallToAction');
@@ -47,6 +40,7 @@ describe('AdAuthoringComponent', () => {
 
   it('should have correct number of mat selects', async () => {
     const selects = await loader.getAllHarnesses(MatSelectHarness);
+
     expect(selects.length).toEqual(2);
   });
 
@@ -56,7 +50,9 @@ describe('AdAuthoringComponent', () => {
         selector: '.landingPage',
       })
     );
+
     await landingTypeSelect.open();
+
     const typeOptions = await landingTypeSelect.getOptions();
     expect(typeOptions.length).toBe(3);
   });
@@ -68,7 +64,9 @@ describe('AdAuthoringComponent', () => {
       })
     );
     await landingTypeSelect.open();
+
     await landingTypeSelect.clickOptions({text: 'AMP'});
+
     const selectedText = await landingTypeSelect.getValueText();
     expect(selectedText).toBe('AMP');
   });
@@ -79,7 +77,9 @@ describe('AdAuthoringComponent', () => {
         selector: '.callToAction',
       })
     );
+
     await callToActionSelect.open();
+
     const typeOptions = await callToActionSelect.getOptions();
     expect(typeOptions.length).toBe(21);
   });
@@ -90,29 +90,37 @@ describe('AdAuthoringComponent', () => {
         selector: '.callToAction',
       })
     );
+
     await callToActionSelect.open();
+
     await callToActionSelect.clickOptions({text: 'Read Now'});
     const selectedText = await callToActionSelect.getValueText();
     expect(selectedText).toBe('Read Now');
   });
 
-  it('should get correct placeholder for mat input', async () => {
+  it('should get correct placeholder for landing page url input', async () => {
     const landingUrlInput = await loader.getHarness(MatInputHarness);
+
     const placeholder = await landingUrlInput.getPlaceholder();
+
     expect(placeholder).toBe('Landing Page URL');
   });
 
-  it('should set value correctly for mat input', async () => {
+  it('should set value correctly for landing page url input', async () => {
     const landingUrlInput = await loader.getHarness(MatInputHarness);
+
     await landingUrlInput.setValue('google.com');
+
     const value = await landingUrlInput.getValue();
     expect(value).toBe('google.com');
   });
 
   it('changing landing url should call updateLandingUrl function', async () => {
     const landingUrlInput = await loader.getHarness(MatInputHarness);
+
     await landingUrlInput.setValue('google.com');
-    expect(service.updateLandingUrl).toHaveBeenCalled();
+
+    expect(service.updateLandingUrl).toHaveBeenCalledWith('google.com');
   });
 
   it('changing landing type option should call updateLandingType function', async () => {
@@ -121,9 +129,11 @@ describe('AdAuthoringComponent', () => {
         selector: '.landingPage',
       })
     );
+
     await landingTypeSelect.open();
     await landingTypeSelect.clickOptions({text: 'AMP'});
-    expect(service.updateLandingType).toHaveBeenCalled();
+
+    expect(service.updateLandingType).toHaveBeenCalledWith(LandingTypeEnum.AMP);
   });
 
   it('changing call to action option should call updateCallToAction function', async () => {
@@ -132,8 +142,12 @@ describe('AdAuthoringComponent', () => {
         selector: '.callToAction',
       })
     );
+
     await callToActionSelect.open();
     await callToActionSelect.clickOptions({text: 'Read Now'});
-    expect(service.updateCallToAction).toHaveBeenCalled();
+
+    expect(service.updateCallToAction).toHaveBeenCalledWith(
+      CallToActionEnum.READ
+    );
   });
 });

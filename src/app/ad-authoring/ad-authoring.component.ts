@@ -4,13 +4,12 @@ import {AdAuthoringWorkflowState} from './ad-authoring.state';
 import {Observable} from 'rxjs';
 import {
   CallToActionEnum,
-  CallToActionMapping,
+  CALL_TO_ACTION_DISPLAY_VALUES,
   sortedCallToAction,
 } from './call-to-action';
-import {tap} from 'rxjs/operators';
 import {
   LandingTypeEnum,
-  LandingTypeMapping,
+  LANDING_TYPE_DISPLAY_VALUES,
   sortedLandingType,
 } from './landing-type-values';
 
@@ -24,16 +23,14 @@ export class AdAuthoringComponent {
 
   landingPageUrl = '';
 
-  public CallToActionMapping = CallToActionMapping;
-  public callToActionValues = sortedCallToAction;
+  CallToActionMapping = CALL_TO_ACTION_DISPLAY_VALUES;
+  callToActionValues = sortedCallToAction;
 
-  public LandingTypeMapping = LandingTypeMapping;
-  public landingTypeValues = sortedLandingType;
+  LandingTypeMapping = LANDING_TYPE_DISPLAY_VALUES;
+  landingTypeValues = sortedLandingType;
 
   constructor(private service: AdAuthoringService) {
-    this.adAuthoringObs = service
-      .getAdAuthorings()
-      .pipe(tap(state => console.log(state)));
+    this.adAuthoringObs = service.getAdAuthorings();
   }
 
   updateLandingUrl(landingUrl: string) {

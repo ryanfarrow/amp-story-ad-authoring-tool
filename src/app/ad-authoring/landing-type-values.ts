@@ -4,7 +4,7 @@ export enum LandingTypeEnum {
   NONAMP = 'NONAMP',
 }
 
-export const LandingTypeMapping: Record<LandingTypeEnum, string> = {
+export const LANDING_TYPE_DISPLAY_VALUES: Record<LandingTypeEnum, string> = {
   [LandingTypeEnum.STORY]: 'Story',
   [LandingTypeEnum.AMP]: 'AMP',
   [LandingTypeEnum.NONAMP]: 'Non-AMP',
@@ -14,16 +14,11 @@ function landingTypeComparator(
   landingType1: LandingTypeEnum,
   landingType2: LandingTypeEnum
 ) {
-  if (landingType1 < landingType2) {
-    return -1;
-  }
-  if (landingType1 > landingType2) {
-    return 1;
-  }
-  return 0;
+  return LANDING_TYPE_DISPLAY_VALUES[landingType1].localeCompare(
+    LANDING_TYPE_DISPLAY_VALUES[landingType2]
+  );
 }
 
 export const sortedLandingType = Object.keys(LandingTypeEnum).sort(
   landingTypeComparator
 );
-console.log(sortedLandingType);

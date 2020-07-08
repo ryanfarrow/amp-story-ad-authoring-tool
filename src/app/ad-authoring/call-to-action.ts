@@ -22,7 +22,7 @@ export enum CallToActionEnum {
   WATCH_EPISODE = 'WATCH_EPISODE',
 }
 
-export const CallToActionMapping: Record<CallToActionEnum, string> = {
+export const CALL_TO_ACTION_DISPLAY_VALUES: Record<CallToActionEnum, string> = {
   [CallToActionEnum.APPLY_NOW]: 'Apply Now',
   [CallToActionEnum.BOOK_NOW]: 'Book Now',
   [CallToActionEnum.BUY_TICKETS]: 'Buy Tickets',
@@ -50,16 +50,11 @@ function callToActionComparator(
   cta1: CallToActionEnum,
   cta2: CallToActionEnum
 ) {
-  if (cta1 < cta2) {
-    return -1;
-  }
-  if (cta1 > cta2) {
-    return 1;
-  }
-  return 0;
+  return CALL_TO_ACTION_DISPLAY_VALUES[cta1].localeCompare(
+    CALL_TO_ACTION_DISPLAY_VALUES[cta2]
+  );
 }
 
 export const sortedCallToAction = Object.keys(CallToActionEnum).sort(
   callToActionComparator
 );
-console.log(sortedCallToAction);
