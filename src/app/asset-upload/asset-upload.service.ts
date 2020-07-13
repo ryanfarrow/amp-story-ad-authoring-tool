@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class AssetUploadService {
 
-  constructor(private readonly adAuthoringState: AdAuthoringWorkflowStateContainer) {}
+  constructor(private readonly adAuthoringState: AdAuthoringWorkflowStateContainer) { }
 
-  updateAssets(file: string) {
+  updateAssets(fileSrc: string, file: File) {
     this.adAuthoringState.setState({
-      ...this.adAuthoringState.getValue(), file
+      ...this.adAuthoringState.getValue(), fileSrc, file
     });
   }
 
