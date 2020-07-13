@@ -7,6 +7,16 @@
     left: 1%;
 }
 
+mat-expansion-panel {
+    border-bottom: none !important;
+    box-shadow: none !important;
+    border: 1px solid #e8e8e8;
+    border-radius: 0;
+    margin: -20px;
+    width: 100%;
+    margin-left: 0px;
+}
+
 // div.ad-authoring {
 //     width: 30%;
 //     right: 0px;
