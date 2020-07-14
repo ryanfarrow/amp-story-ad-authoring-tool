@@ -5,11 +5,11 @@
                 Asset Upload
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <input #fileInput
+        <!-- <input #fileInput
                 type="file" 
                 (change)="onFileInput($event)" 
-                name="filename"/>
-        <!-- <button mat-raised-button 
+                name="filename"/> -->
+        <button mat-raised-button 
             color="primary" 
             type="button" 
             (click)="fileInput.click()">
@@ -19,8 +19,8 @@
                 (change)="onFileInput($event)" 
                 style="display:none;" 
                 name="filename"/>
-        </button> -->
-        <!-- <p *ngIf="file.name as filename; else elseBlock">{{filename}}</p>
-        <ng-template #elseBlock></ng-template> -->
+        </button>
+        <p *ngIf="file; else elseBlock">{{file.name}}</p>
+        <ng-template #elseBlock></ng-template>
     </mat-expansion-panel>
 </div>
