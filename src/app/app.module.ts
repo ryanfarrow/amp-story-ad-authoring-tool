@@ -40,5 +40,4 @@ import { PreviewComponent } from './preview/preview.component';
   providers: [AdAuthoringService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -21,7 +21,7 @@ import { AdAuthoringService } from './ad-authoring/ad-authoring.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'amp-story-ad-authoring-tool';
