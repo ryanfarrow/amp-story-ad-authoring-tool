@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { AssetUploadService } from './asset-upload.service';
-import { AdAuthoringWorkflowStateContainer } from '../ad-authoring/ad-authoring.state';
+import {AssetUploadService} from './asset-upload.service';
+import {AdAuthoringWorkflowStateContainer} from '../ad-authoring/ad-authoring.state';
 
 describe('AssetUploadService', () => {
   let service: AssetUploadService;
@@ -24,13 +24,13 @@ describe('AssetUploadService', () => {
   });
 
   it('should update the assets state', () => {
-    let blob = new Blob([""], { type: 'image/png' });
-    blob["lastModifiedDate"] = "";
-    blob["name"] = "filename";
-    let fakeF = <File>blob;
+    const blob = new Blob([''], {type: 'image/png'});
+    blob['lastModifiedDate'] = '';
+    blob['name'] = 'filename';
+    const fakeF = <File>blob;
 
     service.updateAssets('image.png', fakeF);
-    
+
     expect(state.getValue().fileSrc).toBe('image.png');
     expect(state.getValue().file).toBe(fakeF);
   });
