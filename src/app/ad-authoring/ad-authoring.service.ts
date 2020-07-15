@@ -1,31 +1,38 @@
-import { Injectable } from '@angular/core';
-import { AdAuthoringWorkflowState, AdAuthoringWorkflowStateContainer } from './ad-authoring.state';
+import {Injectable} from '@angular/core';
+import {
+  AdAuthoringWorkflowState,
+  AdAuthoringWorkflowStateContainer,
+} from './ad-authoring.state';
 import {Observable} from 'rxjs';
-import { CallToActionEnum } from './call-to-action';
-import { LandingTypeEnum } from './landing-type-values';
+import {CallToActionEnum} from './call-to-action';
+import {LandingTypeEnum} from './landing-type-values';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdAuthoringService {
-
-  constructor(private readonly adAuthoringState: AdAuthoringWorkflowStateContainer) {}
+  constructor(
+    private readonly adAuthoringState: AdAuthoringWorkflowStateContainer
+  ) {}
 
   updateLandingUrl(landingUrl: string) {
     this.adAuthoringState.setState({
-      ...this.adAuthoringState.getValue(), landingUrl
+      ...this.adAuthoringState.getValue(),
+      landingUrl,
     });
   }
 
   updateLandingType(landingType: LandingTypeEnum) {
     this.adAuthoringState.setState({
-      ...this.adAuthoringState.getValue(), landingType
+      ...this.adAuthoringState.getValue(),
+      landingType,
     });
   }
 
   updateCallToAction(callToAction: CallToActionEnum) {
     this.adAuthoringState.setState({
-      ...this.adAuthoringState.getValue(), callToAction
+      ...this.adAuthoringState.getValue(),
+      callToAction,
     });
   }
 

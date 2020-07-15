@@ -20,17 +20,9 @@
         <br>
     
         <mat-form-field>
-            <!-- <mat-label>Landing Page Type</mat-label>
-            <input matInput 
-                type="text" 
-                #landingType 
-                placeholder="Landing Page Type" 
-                (change)="updateLandingType(landingType.value)"/> -->
-
             <mat-label>Landing Page Type</mat-label>
             <mat-select 
-                class='landingPage' 
-                #landingType 
+                class="landing-page"
                 (selectionChange)="updateLandingType($event.value)">
                 <mat-option *ngFor="let landingTypeValue of landingTypeValues" 
                     [value]="LandingTypeMapping[landingTypeValue]">
@@ -44,8 +36,7 @@
         <mat-form-field>
             <mat-label>Call to Action Text</mat-label>
             <mat-select 
-                class='callToAction' 
-                #callToAction 
+                class="call-to-action"
                 (selectionChange)="updateCallToAction($event.value)">
                 <mat-option *ngFor="let callToActionValue of callToActionValues" 
                     [value]="CallToActionMapping[callToActionValue]">
@@ -59,6 +50,7 @@
 
 </div>
 
+<!-- TODO: Remove later - here for debugging purposes -->
 <!-- <div *ngIf="(adAuthoringObs | async) as adAuthoring">
     Landing Page URL: {{adAuthoring.landingUrl}} <br>
     Landing Page Type: {{adAuthoring.landingType}} <br>

@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, BehaviorSubject} from 'rxjs';
-import { CallToActionEnum } from './call-to-action';
-import { LandingTypeEnum } from './landing-type-values';
-
+import {CallToActionEnum} from './call-to-action';
+import {LandingTypeEnum} from './landing-type-values';
 
 export interface AdAuthoringWorkflowState {
   readonly landingUrl?: string;
@@ -13,22 +12,22 @@ export interface AdAuthoringWorkflowState {
 }
 // add a default state for the fields above
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdAuthoringWorkflowStateContainer {
+  private state$: BehaviorSubject<
+    AdAuthoringWorkflowState
+  > = new BehaviorSubject({});
 
-    private state$: BehaviorSubject<AdAuthoringWorkflowState> = new BehaviorSubject({
-    });
+  getValue(): AdAuthoringWorkflowState {
+    return this.state$.getValue();
+  }
 
-    getValue(): AdAuthoringWorkflowState {
-        return this.state$.getValue();
-    }
+  getState(): Observable<AdAuthoringWorkflowState> {
+    return this.state$.asObservable();
+  }
 
-    getState(): Observable<AdAuthoringWorkflowState> {
-      return this.state$.asObservable();
-    }
-
-    setState(nextState: AdAuthoringWorkflowState): void {
-        this.state$.next(nextState);
-    }
+  setState(nextState: AdAuthoringWorkflowState): void {
+    this.state$.next(nextState);
+  }
 }

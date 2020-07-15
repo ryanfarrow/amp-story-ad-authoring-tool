@@ -1,9 +1,9 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { AdAuthoringService } from './ad-authoring.service';
-import { AdAuthoringWorkflowStateContainer } from './ad-authoring.state';
-import { LandingTypeEnum } from './landing-type-values';
-import { CallToActionEnum } from './call-to-action';
+import {AdAuthoringService} from './ad-authoring.service';
+import {AdAuthoringWorkflowStateContainer} from './ad-authoring.state';
+import {LandingTypeEnum} from './landing-type-values';
+import {CallToActionEnum} from './call-to-action';
 
 describe('AdAuthoringService', () => {
   let service: AdAuthoringService;
