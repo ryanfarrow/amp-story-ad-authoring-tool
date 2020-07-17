@@ -10,19 +10,20 @@ import {AdAuthoringWorkflowState} from '../ad-authoring/ad-authoring.state';
 })
 export class AssetUploadComponent {
   adAuthoringObs: Observable<AdAuthoringWorkflowState>;
+  // raw base 64 encoding of an image or video
+  rawAssetBase64 = '';
+  file: File | null = null;
 
   constructor(private service: AssetUploadService) {
     this.adAuthoringObs = service.getAssets();
   }
-  cardImageBase64 = '';
-  file: File = null;
+
   onFileInput(fileInput: any) {
     this.file = fileInput.target.files[0];
     const reader = new FileReader();
-    reader.onload = (e: any) => {
-      const imgBase64Path = e.target.result;
-      this.cardImageBase64 = imgBase64Path;
-      this.service.updateAssets(this.cardImageBase64, this.file);
+    reader.onload = (loadEvent: any) => {
+      this.rawAssetBase64 = loadEvent.target.result;
+      this.service.updateAssets(this.rawAssetBase64, this.file);
     };
     reader.readAsDataURL(this.file);
   }

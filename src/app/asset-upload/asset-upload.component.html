@@ -13,11 +13,9 @@
             <input #fileInput 
                 type="file" 
                 (change)="onFileInput($event)" 
-                style="display:none;" 
                 name="filename"
                 accept="image/*,video/*"/>
         </button>
-        <p *ngIf="file; else elseBlock">{{file.name}}</p>
-        <ng-template #elseBlock></ng-template>
+        <p *ngIf="file">{{file.name}}</p>
     </mat-expansion-panel>
 </div>
