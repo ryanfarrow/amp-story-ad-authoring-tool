@@ -7,14 +7,4 @@
         <video [src]="adAuthoring.fileSrc" controls></video>
     </div>
 </div>
-
-<iframe id="iframe">
-</iframe>
-
-<script type="text/javascript">
-  var iframe = document.getElementById('iframe');
-  var doc = iframe.contentWindow.document;
-  doc.open();
-  doc.write('Test');
-  doc.close();
-</script>
+<iframe #iframe height="420" width="360"></iframe>
