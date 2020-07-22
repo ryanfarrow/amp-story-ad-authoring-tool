@@ -28,8 +28,13 @@ div.inputs {
   position: absolute;
 }
 div.preview {
+  align-items: center;
+  justify-content: center;
   width: 70%;
   left: 0px;
-  display: block;
+  display: flex;
   position: absolute;
+  height: 90%;
+  background-color: #fafafa;
+  border-right: 1px solid #e8e8e8;
 }
