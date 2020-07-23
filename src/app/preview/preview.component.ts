@@ -20,7 +20,10 @@ export class PreviewComponent {
     const doc =
       this.iframe.nativeElement.contentDocument ||
       this.iframe.nativeElement.contentWindow;
-    //subscribe to state and write on change
+    // doc.open();
+    // doc.write("Initial write");
+    // doc.close();
+    // subscribe to state and write on change
     this.adAuthoringObs.subscribe(AMPHTML => {
       console.log('inside the subscribe: ');
       console.log(AMPHTML);
@@ -29,4 +32,16 @@ export class PreviewComponent {
       doc.close();
     });
   }
+  // writeOnChange() {
+  //   this.adAuthoringObs.subscribe(AMPHTML => {
+  //     const doc =
+  //       this.iframe.nativeElement.contentDocument ||
+  //       this.iframe.nativeElement.contentWindow;
+  //     console.log('inside the subscribe: ');
+  //     console.log(AMPHTML);
+  //     doc.open();
+  //     doc.write(AMPHTML.AMPHTMLstring);
+  //     doc.close();
+  //   });
+  // }
 }
