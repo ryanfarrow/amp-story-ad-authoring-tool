@@ -17,6 +17,10 @@
 
 import {Component} from '@angular/core';
 import {AdAuthoringService} from './ad-authoring/ad-authoring.service';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import {map, skip} from 'rxjs/operators';
+
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -25,4 +29,20 @@ import {AdAuthoringService} from './ad-authoring/ad-authoring.service';
 })
 export class AppComponent {
   title = 'amp-story-ad-authoring-tool';
+  ampHtmlObs: Observable<string>;
+
+  constructor(
+    private service: AdAuthoringService,
+    private sanitizer: DomSanitizer
+  ) {
+    this.ampHtmlObs = service
+      .getAdAuthorings()
+      .pipe(
+        map(state =>
+          // [this.sanitizer.bypassSecurityTrustHtml(state.AMPHTMLstring)]
+          state.AMPHTMLstring
+        )
+      );
+
+  }
 }

@@ -1,4 +1,4 @@
-import {Component, ViewChild, ElementRef} from '@angular/core';
+import {Component, ViewChild, ElementRef, Input} from '@angular/core';
 import {Observable} from 'rxjs';
 import {AdAuthoringWorkflowState} from '../ad-authoring/ad-authoring.state';
 import {AdAuthoringService} from '../ad-authoring/ad-authoring.service';
@@ -13,7 +13,8 @@ import {resolve} from 'dns';
 })
 export class PreviewComponent {
   // adAuthoringObs: Observable<AdAuthoringWorkflowState>;
-  ampHtmlObs: Observable<SafeHtml>;
+  // ampHtmlObs: Observable<SafeHtml[]>;
+  @Input() storyAMPHTML: string;
   // public amphtml: SafeHtml = "";
 
   constructor(
@@ -24,130 +25,130 @@ export class PreviewComponent {
     // this.adAuthoringObs.subscribe(AMPHTML => {
     //   this.amphtml = this.sanitizer.bypassSecurityTrustHtml(AMPHTML.AMPHTMLstring);
     // });
-    this.ampHtmlObs = service
-      .getAdAuthorings()
-      .pipe(
-        map(state =>
-          this.sanitizer.bypassSecurityTrustHtml(state.AMPHTMLstring)
-        )
-      );
+    // this.ampHtmlObs = service
+    //   .getAdAuthorings()
+    //   .pipe(
+    //     map(state =>
+    //       this.sanitizer.bypassSecurityTrustHtml(state.AMPHTMLstring)
+    //     )
+    //   );
   }
 
-  adAMPHTML =
-    '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"LEARN_MORE\\"><meta name=\\"amp-cta-url\\" content=\\"https:\\/\\/www.amp.dev\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p><amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"https:\\/\\/placekitten.com\\/300\\/250\\"><\\/amp-img><\\/body><\\/html>"';
+  // adAMPHTML =
+  //   '"<!doctype html><html amp4ads><head><meta charset=\\"utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width,minimum-scale=1\\"><meta name=\\"amp-cta-type\\" content=\\"LEARN_MORE\\"><meta name=\\"amp-cta-url\\" content=\\"https:\\/\\/www.amp.dev\\"><style amp4ads-boilerplate>body{visibility:hidden}<\\/style><script async src=\\"https:\\/\\/cdn.ampproject.org\\/amp4ads-v0.js\\"><\\/script><\\/head><body><p>Hello, fake ad with srcdoc<\\/p><amp-img layout=\\"fixed\\" height=\\"250\\" width=\\"300\\" src=\\"https:\\/\\/placekitten.com\\/300\\/250\\"><\\/amp-img><\\/body><\\/html>"';
 
-  storyAMPHTML =
-    `<!DOCTYPE html>
-  <html amp="🤠-invalid" lang="en">
-    <head>
-      <meta charset="utf-8" />
-      <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-      <script async src="https://cdn.ampproject.org/v0.js"></script>
-      <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
-      <script async custom-element="amp-story-auto-ads" src="https://cdn.ampproject.org/v0/amp-story-auto-ads-0.1.js"></script>
-      <title>AMP Story</title>
-      <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
-      <link rel="canonical" href="/" />
-    </head>
-    <body>
-      <amp-story standalone>  
-        <amp-story-auto-ads id="i-amphtml-demo-1">
-          <script type="application/json">
-            {
-              "ad-attributes": {
-                "type": "fake",
-                "srcdoc": ` +
-    this.adAMPHTML +
-    `,
-                "a4a-conversion": true
-              }
-            }
-          </script>
-        </amp-story-auto-ads>
-        <amp-story-page class="i-amphtml-story-ad-cover" id="cover">
-          <amp-story-grid-layer template="fill">
-            <amp-img
-              src="https://amp.dev/static/samples/img/story_dog2.jpg"
-              width="720"
-              height="1280"
-              layout="responsive"
-            >
-            </amp-img>
-          </amp-story-grid-layer>
-          <amp-story-grid-layer template="vertical">
-            <h1>Hello World</h1>
-            <p>This is an AMP Story.</p>
-          </amp-story-grid-layer>
-        </amp-story-page>
+  // storyAMPHTML =
+  //   `<!DOCTYPE html>
+  // <html amp="🤠-invalid" lang="en">
+  //   <head>
+  //     <meta charset="utf-8" />
+  //     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  //     <script async src="https://cdn.ampproject.org/v0.js"></script>
+  //     <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+  //     <script async custom-element="amp-story-auto-ads" src="https://cdn.ampproject.org/v0/amp-story-auto-ads-0.1.js"></script>
+  //     <title>AMP Story</title>
+  //     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+  //     <link rel="canonical" href="/" />
+  //   </head>
+  //   <body>
+  //     <amp-story standalone>  
+  //       <amp-story-auto-ads id="i-amphtml-demo-1">
+  //         <script type="application/json">
+  //           {
+  //             "ad-attributes": {
+  //               "type": "fake",
+  //               "srcdoc": ` +
+  //   this.adAMPHTML +
+  //   `,
+  //               "a4a-conversion": true
+  //             }
+  //           }
+  //         </script>
+  //       </amp-story-auto-ads>
+  //       <amp-story-page class="i-amphtml-story-ad-cover" id="cover">
+  //         <amp-story-grid-layer template="fill">
+  //           <amp-img
+  //             src="https://amp.dev/static/samples/img/story_dog2.jpg"
+  //             width="720"
+  //             height="1280"
+  //             layout="responsive"
+  //           >
+  //           </amp-img>
+  //         </amp-story-grid-layer>
+  //         <amp-story-grid-layer template="vertical">
+  //           <h1>Hello World</h1>
+  //           <p>This is an AMP Story.</p>
+  //         </amp-story-grid-layer>
+  //       </amp-story-page>
   
-        <amp-story-page id="page-2">
-          <amp-story-grid-layer template="fill">
-            <amp-video
-              autoplay
-              loop
-              width="720"
-              height="960"
-              poster="https://amp.dev/static/samples/img/story_video_dog_cover.jpg"
-              layout="responsive"
-            >
-              <source
-                src="https://amp.dev/static/samples/video/story_video_dog.mp4"
-                type="video/mp4"
-              />
-            </amp-video>
-          </amp-story-grid-layer>
-        </amp-story-page>
+  //       <amp-story-page id="page-2">
+  //         <amp-story-grid-layer template="fill">
+  //           <amp-video
+  //             autoplay
+  //             loop
+  //             width="720"
+  //             height="960"
+  //             poster="https://amp.dev/static/samples/img/story_video_dog_cover.jpg"
+  //             layout="responsive"
+  //           >
+  //             <source
+  //               src="https://amp.dev/static/samples/video/story_video_dog.mp4"
+  //               type="video/mp4"
+  //             />
+  //           </amp-video>
+  //         </amp-story-grid-layer>
+  //       </amp-story-page>
   
-        <amp-story-page id="three">
-          <amp-story-grid-layer template="vertical">
-            <h1>page three</h1>
-          </amp-story-grid-layer>
-        </amp-story-page>
+  //       <amp-story-page id="three">
+  //         <amp-story-grid-layer template="vertical">
+  //           <h1>page three</h1>
+  //         </amp-story-grid-layer>
+  //       </amp-story-page>
   
-        <amp-story-page id="four">
-          <amp-story-grid-layer template="vertical">
-            <h1>page four</h1>
-          </amp-story-grid-layer>
-        </amp-story-page>
+  //       <amp-story-page id="four">
+  //         <amp-story-grid-layer template="vertical">
+  //           <h1>page four</h1>
+  //         </amp-story-grid-layer>
+  //       </amp-story-page>
   
-        <amp-story-page id="five">
-          <amp-story-grid-layer template="vertical">
-            <h1>page five</h1>
-          </amp-story-grid-layer>
-        </amp-story-page>
+  //       <amp-story-page id="five">
+  //         <amp-story-grid-layer template="vertical">
+  //           <h1>page five</h1>
+  //         </amp-story-grid-layer>
+  //       </amp-story-page>
   
-        <amp-story-page id="six">
-          <amp-story-grid-layer template="vertical">
-            <h1>page six</h1>
-          </amp-story-grid-layer>
-        </amp-story-page>
+  //       <amp-story-page id="six">
+  //         <amp-story-grid-layer template="vertical">
+  //           <h1>page six</h1>
+  //         </amp-story-grid-layer>
+  //       </amp-story-page>
   
-        <amp-story-page id="seven">
-          <amp-story-grid-layer template="vertical">
-            <h1>page seven</h1>
-          </amp-story-grid-layer>
-        </amp-story-page>
+  //       <amp-story-page id="seven">
+  //         <amp-story-grid-layer template="vertical">
+  //           <h1>page seven</h1>
+  //         </amp-story-grid-layer>
+  //       </amp-story-page>
   
-        <amp-story-page id="eight">
-          <amp-story-grid-layer template="vertical">
-            <h1>page eight</h1>
-          </amp-story-grid-layer>
-        </amp-story-page>
+  //       <amp-story-page id="eight">
+  //         <amp-story-grid-layer template="vertical">
+  //           <h1>page eight</h1>
+  //         </amp-story-grid-layer>
+  //       </amp-story-page>
   
-        <amp-story-page id="nine">
-          <amp-story-grid-layer template="vertical">
-            <h1>page nine</h1>
-          </amp-story-grid-layer>
-        </amp-story-page>
+  //       <amp-story-page id="nine">
+  //         <amp-story-grid-layer template="vertical">
+  //           <h1>page nine</h1>
+  //         </amp-story-grid-layer>
+  //       </amp-story-page>
   
-        <amp-story-page id="ten">
-          <amp-story-grid-layer template="vertical">
-            <h1>page ten</h1>
-          </amp-story-grid-layer>
-        </amp-story-page>
-      </amp-story>
-    </body>
-  </html>`;
+  //       <amp-story-page id="ten">
+  //         <amp-story-grid-layer template="vertical">
+  //           <h1>page ten</h1>
+  //         </amp-story-grid-layer>
+  //       </amp-story-page>
+  //     </amp-story>
+  //   </body>
+  // </html>`;
 
   // steps:
   // 1. render a static story with default ad initially (using .write)
@@ -163,46 +164,46 @@ export class PreviewComponent {
     storyDoc.write(this.storyAMPHTML);
     storyDoc.close();
     // subscribe to state and write on change
-    this.ampHtmlObs.pipe(skip(1)).subscribe(async AMPHTML => {
-      const adIframe = storyDoc.querySelector('iframe');
-      console.log('reload the iframe');
-      adIframe.contentWindow.location.reload();
-      // adIframe.src = 'about:blank';
-      console.log('inside the subscribe: ');
-      // console.log(AMPHTML);
+    // this.ampHtmlObs.pipe(skip(1)).subscribe(async AMPHTML => {
+    //   const adIframe = storyDoc.querySelector('iframe');
+    //   console.log('reload the iframe');
+    //   adIframe.contentWindow.location.reload();
+    //   // adIframe.src = 'about:blank';
+    //   console.log('inside the subscribe: ');
+    //   // console.log(AMPHTML);
 
-      // const loaded = await this.whenIframeLoaded(adIframe);
-      // const childDoc = loaded.contentWindow.document;
-      // childDoc.open();
-      // childDoc.write(AMPHTML);
-      // childDoc.close();
+    //   // const loaded = await this.whenIframeLoaded(adIframe);
+    //   // const childDoc = loaded.contentWindow.document;
+    //   // childDoc.open();
+    //   // childDoc.write(AMPHTML);
+    //   // childDoc.close();
 
-      // const loaded = await adIframe.addEventListener('load', this.whenIframeLoaded(adIframe));
-      // const childDoc = loaded.contentWindow.document;
-      // childDoc.open();
-      // childDoc.write(AMPHTML);
-      // childDoc.close();
+    //   // const loaded = await adIframe.addEventListener('load', this.whenIframeLoaded(adIframe));
+    //   // const childDoc = loaded.contentWindow.document;
+    //   // childDoc.open();
+    //   // childDoc.write(AMPHTML);
+    //   // childDoc.close();
 
-      this.whenIframeLoaded(adIframe).then(function () {
-        console.log('this shud pritn 2nd');
-        const adDoc = adIframe.contentWindow.document;
-        adDoc.open();
-        adDoc.write(AMPHTML);
-        adDoc.close();
-      });
+    //   // this.whenIframeLoaded(adIframe).then(function () {
+    //   //   console.log('this shud pritn 2nd');
+    //   //   const adDoc = adIframe.contentWindow.document;
+    //   //   adDoc.open();
+    //   //   adDoc.write(AMPHTML);
+    //   //   adDoc.close();
+    //   // });
 
-      // const adDoc = adIframe.contentWindow.document;
-      // adDoc.open();
-      // adDoc.write(AMPHTML);
-      // adDoc.close();
+    //   // const adDoc = adIframe.contentWindow.document;
+    //   // adDoc.open();
+    //   // adDoc.write(AMPHTML);
+    //   // adDoc.close();
 
-      // await this.whenIframeLoaded(adIframe);
-      // console.log("write to iframe after it has loaded");
-      // const adDoc = adIframe.contentWindow.document;
-      // adDoc.open();
-      // adDoc.write(AMPHTML);
-      // adDoc.close();
-    });
+    //   // await this.whenIframeLoaded(adIframe);
+    //   // console.log("write to iframe after it has loaded");
+    //   // const adDoc = adIframe.contentWindow.document;
+    //   // adDoc.open();
+    //   // adDoc.write(AMPHTML);
+    //   // adDoc.close();
+    // });
   }
 
   // delay(iframe) {
@@ -216,18 +217,18 @@ export class PreviewComponent {
   //   });
   // }
 
-  whenIframeLoaded(iframe) {
-    return new Promise(function (resolve) {
-      iframe.addEventListener(
-        'load',
-        function () {
-          console.log('print first, loaded iframe');
-          resolve(true);
-        },
-        {once: true}
-      );
-    });
-  }
+  // whenIframeLoaded(iframe) {
+  //   return new Promise(function (resolve) {
+  //     iframe.addEventListener(
+  //       'load',
+  //       function () {
+  //         console.log('print first, loaded iframe');
+  //         resolve(true);
+  //       },
+  //       {once: true}
+  //     );
+  //   });
+  // }
 
   // async whenIframeLoaded(iframe) {
   //   iframe.addEventListener(
